@@ -620,7 +620,19 @@
     // UX feedback
     form.querySelector('.spinner-border').classList.remove('d-none');
     form.querySelector('.btn-text').textContent = 'Joining…';
-
+    fetch('waiting.jobfinders.site', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, role })
+        }).then(r => r.ok ? r.json() : Promise.reject(r)).then(() => {
+          wrapper.classList.add('d-none');
+          success.classList.remove('d-none');
+          console.log('Data Submitted succesfully');
+        }).catch(() => {
+            console.log('Failed to submit form');
+            alert('Something went wrong. Please try again.');
+        });
+      
     // Fake async request (swap with real API call)
     setTimeout(() => {
       wrapper.classList.add('d-none');
