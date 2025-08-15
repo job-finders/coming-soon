@@ -617,28 +617,30 @@
     e.preventDefault();
     if (!form.checkValidity()) { form.classList.add('was-validated'); return; }
 
+    // collect the data
+    const fd   = new FormData(form);
+    const name  = fd.get('name');
+    const email = fd.get('email');
+    const role  = fd.get('role');
+
     // UX feedback
     form.querySelector('.spinner-border').classList.remove('d-none');
     form.querySelector('.btn-text').textContent = 'Joining…';
-    fetch('waiting.jobfinders.site', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, role })
-        }).then(r => r.ok ? r.json() : Promise.reject(r)).then(() => {
-          wrapper.classList.add('d-none');
-          success.classList.remove('d-none');
-          console.log('Data Submitted succesfully');
-        }).catch(() => {
-            console.log('Failed to submit form');
-            alert('Something went wrong. Please try again.');
-        });
-      
-    // Fake async request (swap with real API call)
-    setTimeout(() => {
+
+    // real API call
+    fetch('https://waiting.jobfinders.site', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, role })
+    })
+    .then(r => r.ok ? r.json() : Promise.reject(r))
+    .then(() => {
       wrapper.classList.add('d-none');
       success.classList.remove('d-none');
-      // Optional: send data via fetch('/api/waiting-list', {method:'POST', body: new FormData(form)})
-    }, 1200);
+    })
+    .catch(() => {
+      alert('Something went wrong. Please try again.');
+    });
   });
 
   // Reset on reopen
