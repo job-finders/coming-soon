@@ -463,36 +463,70 @@
 </div>    </div>
 </section>
 
-<section class="py-5 bg-light" id="contact-us">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3">Contact Us</h2>
-            <p class="lead text-muted">Have questions or need more information? Reach out to us.</p>
+<!-- WAITING LIST SECTION -->
+<section class="py-5 bg-light" id="waiting-list">
+  <div class="container text-center">
+    <h2 class="display-5 fw-bold mb-3">Be the First to Know</h2>
+    <p class="lead text-muted mb-4">Get early access the moment JobFinders.site launches.</p>
+
+    <!-- Eye-catching pulse button -->
+    <button class="btn btn-primary-custom btn-lg pulse-on-hover shadow-lg"
+            data-bs-toggle="modal" data-bs-target="#waitingListModal">
+      <i class="fas fa-rocket me-2"></i>Join the Waiting List
+    </button>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal fade" id="waitingListModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+      <!-- Step 1: Form -->
+      <div id="wl-form-wrapper" class="p-4 p-md-5">
+        <div class="text-center mb-4">
+          <i class="fas fa-user-plus fa-3x text-primary mb-3"></i>
+          <h5 class="modal-title fw-bold">Reserve Your Spot</h5>
         </div>
 
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <form class="card p-4 shadow-lg">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Your Name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Your Email">
-                    </div>
-                    <div class="mb-3">
-                        <label for="message" class="form-label">Message</label>
-                        <textarea class="form-control" id="message" rows="5" placeholder="Your Message"></textarea>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary-custom">Send Message</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+        <form id="waitingListForm" novalidate>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Full Name</label>
+            <input type="text" class="form-control" name="name" placeholder="Jane Doe" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Email Address</label>
+            <input type="email" class="form-control" name="email" placeholder="jane@example.com" required>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-semibold">I am a…</label>
+            <select class="form-select" name="role" required>
+              <option value="" selected disabled>Choose one</option>
+              <option value="jobseeker">Job-seeker</option>
+              <option value="employer">Employer</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary-custom w-100">
+            <span class="spinner-border spinner-border-sm d-none me-2" role="status"></span>
+            <span class="btn-text">Join Now</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Step 2: Thank-you -->
+      <div id="wl-success" class="p-4 p-md-5 text-center d-none">
+        <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
+        <h5 class="fw-bold">You're on the list!</h5>
+        <p class="mb-0">We’ve sent a confirmation email—please check your inbox (and spam folder) to verify your spot.</p>
+        <button type="button" class="btn btn-outline-primary mt-4" data-bs-dismiss="modal">Close</button>
+      </div>
     </div>
-</section>
+  </div>
+</div>
+
+
 
 <footer class="footer-container">
     <div class="footer-wave"></div>
@@ -570,5 +604,52 @@
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+<!-- INLINE JS (vanilla, keeps it light) -->
+<script>
+(() => {
+  const modal   = document.getElementById('waitingListModal');
+  const form    = document.getElementById('waitingListForm');
+  const success = document.getElementById('wl-success');
+  const wrapper = document.getElementById('wl-form-wrapper');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.classList.add('was-validated'); return; }
+
+    // UX feedback
+    form.querySelector('.spinner-border').classList.remove('d-none');
+    form.querySelector('.btn-text').textContent = 'Joining…';
+
+    // Fake async request (swap with real API call)
+    setTimeout(() => {
+      wrapper.classList.add('d-none');
+      success.classList.remove('d-none');
+      // Optional: send data via fetch('/api/waiting-list', {method:'POST', body: new FormData(form)})
+    }, 1200);
+  });
+
+  // Reset on reopen
+  modal.addEventListener('hidden.bs.modal', () => {
+    form.reset();
+    form.classList.remove('was-validated');
+    wrapper.classList.remove('d-none');
+    success.classList.add('d-none');
+    form.querySelector('.spinner-border').classList.add('d-none');
+    form.querySelector('.btn-text').textContent = 'Join Now';
+  });
+})();
+</script>
+
+<!-- Optional tiny pulse animation -->
+<style>
+.pulse-on-hover:hover {
+  animation: pulse 1.2s infinite cubic-bezier(.4,0,.6,1);
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1);   box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+  50%      { transform: scale(1.05); box-shadow: 0 0 0 0.5rem rgba(37, 99, 235, 0);  }
+}
+</style>    
 </body>
 </html>
