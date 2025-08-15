@@ -274,6 +274,69 @@
                 gap: 8px;
             }
         }
+
+    .features-section {
+        padding: 40px 20px;
+        background-color: var(--light-bg);
+        text-align: center;
+    }
+
+    .features-title {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: var(--dark-color);
+    }
+
+    .features-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        color: var(--dark-color);
+    }
+
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .feature-card {
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 12px rgba(37, 99, 235, 0.15);
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        color: var(--primary-color);
+    }
+
+    .feature-title {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        color: var(--dark-color);
+    }
+
+    .feature-description {
+        font-size: 1rem;
+        color: var(--dark-color);
+        line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+        .feature-grid {
+            grid-template-columns: 1fr;
+        }
+    }        
     </style>
 </head>
 <body>
@@ -320,76 +383,34 @@
     </div>
 </section>
 
-<section class="py-5 bg-light" id="upcoming-features">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3">Upcoming Features</h2>
-            <p class="lead text-muted">Here's what you can expect from JobFinders.site</p>
+<section class="features-section">
+    <h2 class="features-title">Upcoming Features</h2>
+    <p class="features-subtitle">Here's what you can expect from JobFinders.site</p>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-bullhorn"></i></div>
+            <h3 class="feature-title">Enhanced Job Postings</h3>
+            <p class="feature-description">Use AI to optimize your job descriptions. Our tool suggests keywords and phrases that attract the right candidates.</p>
         </div>
-
-        <div class="row">
-            <!-- AI Tools for Employers -->
-            <div class="col-lg-6 mb-5">
-                <h3 class="h4 fw-bold mb-4 text-primary">
-                    <i class="fas fa-building me-2"></i>AI Tools for Employers
-                </h3>
-                <div class="row">
-                    <div class="col-md-6 mb-4">
-                        <div class="feature-card card h-100 p-4 text-center">
-                            <div class="icon-bg bg-primary bg-opacity-10">
-                                <i class="fas fa-bullhorn text-primary fa-lg"></i>
-                            </div>
-                            <h5 class="fw-bold">Enhanced Job Postings</h5>
-                            <p class="text-muted small">Use AI to optimize your job descriptions. Our tool suggests keywords and phrases that attract the right candidates.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <div class="feature-card card h-100 p-4 text-center">
-                            <div class="icon-bg bg-success bg-opacity-10">
-                                <i class="fas fa-filter text-success fa-lg"></i>
-                            </div>
-                            <h5 class="fw-bold">Smart Candidate Screening</h5>
-                            <p class="text-muted small">Automatically evaluate and rank candidates based on their skills and experience.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- AI Tools for Job Seekers -->
-            <div class="col-lg-6 mb-5">
-                <h3 class="h4 fw-bold mb-4 text-primary">
-                    <i class="fas fa-user-tie me-2"></i>AI Tools for Job Seekers
-                </h3>
-                <div class="row">
-                    <div class="col-md-6 mb-4">
-                        <div class="feature-card card h-100 p-4 text-center">
-                            <div class="icon-bg bg-primary bg-opacity-10">
-                                <i class="fas fa-file-alt text-primary fa-lg"></i>
-                            </div>
-                            <h5 class="fw-bold">AI-Powered Resume Builder</h5>
-                            <p class="text-muted small">Create a standout resume with our easy-to-use builder. Get AI-driven suggestions to optimize your resume for ATS.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <div class="feature-card card h-100 p-4 text-center">
-                            <div class="icon-bg bg-success bg-opacity-10">
-                                <i class="fas fa-search text-success fa-lg"></i>
-                            </div>
-                            <h5 class="fw-bold">Smart Job Alerts</h5>
-                            <p class="text-muted small">Receive notifications for the best job openings that match your skills and preferences.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <div class="feature-card card h-100 p-4 text-center">
-                            <div class="icon-bg bg-warning bg-opacity-10">
-                                <i class="fas fa-keyword text-warning fa-lg"></i>
-                            </div>
-                            <h5 class="fw-bold">Keyword Suggestions & Industry Insights</h5>
-                            <p class="text-muted small">Get AI-driven keyword suggestions and industry-specific insights to help you tailor your job search.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-sort-amount-down"></i></div>
+            <h3 class="feature-title">Smart Candidate Screening</h3>
+            <p class="feature-description">Automatically evaluate and rank candidates based on their skills and experience.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-file-alt"></i></div>
+            <h3 class="feature-title">AI-Powered Resume Builder</h3>
+            <p class="feature-description">Create a standout resume with our easy-to-use builder. Get AI-driven suggestions to optimize your resume for ATS.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-bell"></i></div>
+            <h3 class="feature-title">Smart Job Alerts</h3>
+            <p class="feature-description">Receive notifications for the best job openings that match your skills and preferences.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-tags"></i></div>
+            <h3 class="feature-title">Keyword Suggestions & Industry Insights</h3>
+            <p class="feature-description">Get AI-driven keyword suggestions and industry-specific insights to help you tailor your job search.</p>
         </div>
     </div>
 </section>
