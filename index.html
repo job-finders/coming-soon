@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobFinders.site - Coming Soon</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #059669;
+            --accent-color: #f59e0b;
+            --dark-color: #1f2937;
+            --light-bg: #f8fafc;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        }
+
+        .btn-primary-custom {
+            background: var(--primary-color);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+        }
+
+        .footer-container {
+            background: linear-gradient(135deg, #1a3a7a 0%, #0a5c36 100%);
+            color: white;
+            padding: 60px 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-wave {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%231a3a7a' fill-opacity='0.6' d='M0,160L48,154.7C96,149,192,139,288,128C384,117,480,107,576,128C672,149,768,203,864,213.3C960,224,1056,192,1152,165.3C1248,139,1344,117,1392,106.7L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand i {
+            font-size: 28px;
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .footer-brand h2 {
+            font-weight: 700;
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: -0.5px;
+            color: white;
+        }
+
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .footer-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            color: #ffffff !important;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .footer-links a i {
+            width: 20px;
+            margin-right: 10px;
+            font-size: 14px;
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .contact-info p {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info i {
+            width: 20px;
+            margin-right: 12px;
+            color: var(--accent-color);
+        }
+
+        .newsletter-form .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .newsletter-form .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .newsletter-form .btn {
+            background: var(--accent-color);
+            color: white;
+            font-weight: 600;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form .btn:hover {
+            background: #e69100;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
+        }
+
+        .footer-bottom {
+            background: rgba(0, 0, 0, 0.2);
+            margin-top: 60px;
+            padding: 25px 0;
+        }
+
+        .footer-bottom-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-legal-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .footer-legal-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-legal-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .copyright a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .footer-about {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+
+            .footer-col {
+                margin-bottom: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-title {
+                margin-bottom: 20px;
+            }
+
+            .footer-content {
+                padding: 0 20px;
+            }
+
+            .footer-legal-links {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark hero-gradient shadow-sm py-3">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-white" href="/">
+            <i class="fas fa-briefcase me-2"></i>JobFinders.site
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-white fw-semibold" href="#upcoming-features">
+                        <i class="fas fa-info-circle me-1"></i> Upcoming Features
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-white fw-semibold" href="#contact-us">
+                        <i class="fas fa-envelope me-1"></i> Contact Us
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="hero-gradient text-white py-5">
+    <div class="container">
+        <div class="row align-items-center min-vh-75">
+            <div class="col-lg-6">
+                <h1 class="display-3 fw-bold mb-4">JobFinders.site is Coming Soon!</h1>
+                <p class="lead mb-4">We're working hard to bring you the best job search platform in South Africa. Stay tuned for more updates.</p>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="/static/images/coming-soon.svg" alt="Coming Soon" class="img-fluid" style="max-height: 400px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light" id="upcoming-features">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold mb-3">Upcoming Features</h2>
+            <p class="lead text-muted">Here's what you can expect from JobFinders.site</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="feature-card card h-100 p-4 text-center">
+                    <div class="icon-bg bg-primary bg-opacity-10">
+                        <i class="fas fa-search text-primary fa-lg"></i>
+                    </div>
+                    <h5 class="fw-bold">Advanced Job Search</h5>
+                    <p class="text-muted small">Search for jobs based on keywords, location, and more.</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="feature-card card h-100 p-4 text-center">
+                    <div class="icon-bg bg-success bg-opacity-10">
+                        <i class="fas fa-bell text-success fa-lg"></i>
+                    </div>
+                    <h5 class="fw-bold">Job Alerts</h5>
+                    <p class="text-muted small">Get notified when new jobs matching your criteria are posted.</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="feature-card card h-100 p-4 text-center">
+                    <div class="icon-bg bg-warning bg-opacity-10">
+                        <i class="fas fa-file-alt text-warning fa-lg"></i>
+                    </div>
+                    <h5 class="fw-bold">Resume Builder</h5>
+                    <p class="text-muted small">Create professional resumes with our easy-to-use builder and templates.</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="feature-card card h-100 p-4 text-center">
+                    <div class="icon-bg bg-info bg-opacity-10">
+                        <i class="fas fa-chart-line text-info fa-lg"></i>
+                    </div>
+                    <h5 class="fw-bold">Career Insights</h5>
+                    <p class="text-muted small">Get salary insights, market trends, and career guidance for your industry.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light" id="contact-us">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold mb-3">Contact Us</h2>
+            <p class="lead text-muted">Have questions or need more information? Reach out to us.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form class="card p-4 shadow-lg">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Your Name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Your Email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" rows="5" placeholder="Your Message"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary-custom">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer-container">
+    <div class="footer-wave"></div>
+    <div class="container footer-content">
+        <div class="row">
+            <div class="col-lg-4 footer-about">
+                <div class="footer-brand">
+                    <i class="fas fa-briefcase"></i>
+                    <h2>JobFinders.site</h2>
+                </div>
+                <p>Connecting talented South Africans with rewarding career opportunities and helping businesses find the perfect candidates.</p>
+                
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> info@jobfinders.site</p>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="col-lg-2 col-md-4 footer-col">
+                <h4 class="footer-title">Job Seekers</h4>
+                <ul class="footer-links">
+                    <li><a href="#upcoming-features"><i class="fas fa-search"></i> Browse Jobs</a></li>
+                    <li><a href="#upcoming-features"><i class="fas fa-bell"></i> Job Alerts</a></li>
+                    <li><a href="#upcoming-features"><i class="fas fa-file-alt"></i> Resume Builder</a></li>
+                    <li><a href="#upcoming-features"><i class="fas fa-lightbulb"></i> Career Advice</a></li>
+                </ul>
+            </div>
+            
+            <div class="col-lg-2 col-md-4 footer-col">
+                <h4 class="footer-title">Employers</h4>
+                <ul class="footer-links">
+                    <li><a href="#upcoming-features"><i class="fas fa-bullhorn"></i> Post a Job</a></li>
+                    <li><a href="#upcoming-features"><i class="fas fa-tasks"></i> Manage Jobs</a></li>
+                    <li><a href="#upcoming-features"><i class="fas fa-search"></i> Search Candidates</a></li>
+                    <li><a href="#upcoming-features"><i class="fas fa-users"></i> View Applicants</a></li>
+                </ul>
+            </div>
+            
+            <div class="col-lg-4 col-md-4 footer-col">
+                <h4 class="footer-title">Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="#contact-us"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="#contact-us"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                    <li><a href="https://blog.jobfinders.site"><i class="fas fa-blog"></i> Career Blog</a></li>
+                    <li><a href="#contact-us"><i class="fas fa-question-circle"></i> Help Center</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        &copy; 2025 JobFinders.site. A product of <a href="#">Custom Logic (Pty) Ltd</a>. All rights reserved.
+                    </div>
+                    <div class="footer-legal-links">
+                        <a href="#contact-us">Privacy Policy</a>
+                        <a href="#contact-us">Terms of Service</a>
+                        <a href="#contact-us">Cookie Policy</a>
+                        <a href="#contact-us">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>                    
+					
+					
